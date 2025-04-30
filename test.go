@@ -11,6 +11,8 @@ type Person struct{
   age int
 }
 
+
+
 type Human interface {
   greet()
 }
@@ -68,6 +70,10 @@ func fizzBuzz(n int) {
       fmt.Println(i)
     }
   }
+}
+
+func httpServer(w http.ResponseWriter, r *http.Request) {
+  fmt.Fprintf(w, "Hello, %s!", r.URL.Path[1:])
 }
 
 func callAPI() {
@@ -132,6 +138,20 @@ func main() {
   callAPI()
 
   typeAssertion("Hello")
+
+  //panic("HOLYplaceholder")
+  //
+  var niltest string
+
+  fmt.Println(niltest)
+
+  bolB, _ := json.Marshal(true)
+  fmt.Println(string(bolB))
+  intB, _ := json.Marshal(1)
+  fmt.Println(string(intB))
+
+  http.HandleFunc("/", httpServer)
+  http.ListenAndServe(":8080", nil)
 }
 
 
